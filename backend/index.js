@@ -30,14 +30,14 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/restaurant", restaurantRoutes);
 
-if (process.env.NODE_ENV === "production") {
+// if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/dist")));
   
   // running the frontend from the server
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
   })
-}
+// }
 
 
 const PORT = process.env.PORT || 5000;
