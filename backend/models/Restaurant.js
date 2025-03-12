@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 
 // Define a sub-schema for food items
 const FoodItemSchema = new mongoose.Schema({
@@ -14,5 +14,6 @@ const RestaurantSchema = new mongoose.Schema({
   // Adding available food items
   availableFoodItems: [FoodItemSchema]
 }, { timestamps: true });
+const Restaurant =  mongoose.model("Restaurant", RestaurantSchema);
 
-module.exports = mongoose.model("Restaurant", RestaurantSchema);
+export default Restaurant;

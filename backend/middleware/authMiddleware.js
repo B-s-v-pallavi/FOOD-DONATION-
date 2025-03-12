@@ -1,8 +1,9 @@
 // backend/middleware/authMiddleware.js
-const { verifyToken } = require("../config/jwt");
-const User = require("../models/User");
 
-const authMiddleware = (req, res, next) => {
+import { verifyToken } from "../config/jwt.js"
+import User from "../models/User.js"
+
+export const authMiddleware = (req, res, next) => {
   const token = req.header("Authorization")?.replace("Bearer ", "");
   if (!token) return res.status(401).json({ message: "Access Denied: No Token Provided" });
 
@@ -15,7 +16,7 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-const verifyAdmin = async (req, res, next) => {
+export const verifyAdmin = async (req, res, next) => {
   try {
     const user = await User.findById(req.user.id);
     if (!user || user.role !== "admin") {
@@ -27,4 +28,4 @@ const verifyAdmin = async (req, res, next) => {
   }
 };
 
-module.exports = { authMiddleware, verifyAdmin };
+

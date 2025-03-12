@@ -1,7 +1,9 @@
 // backend/routes/restaurantRoute.js
-const express = require("express");
-const Restaurant = require("../models/Restaurant");
-const { authMiddleware, verifyAdmin } = require("../middleware/authMiddleware");
+
+import express from "express";
+import Restaurant from"../models/Restaurant.js"
+import { authMiddleware, verifyAdmin } from "../middleware/authMiddleware.js"
+
 const router = express.Router();
 
 // POST endpoint to add a new restaurant (admin-protected)
@@ -131,4 +133,4 @@ router.delete("/:id/fooditems/:foodItemName", authMiddleware, async (req, res) =
   }
 });
 
-module.exports = router;
+export default router;

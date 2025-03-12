@@ -1,21 +1,43 @@
 // backend/index.js
-const express = require("express");
+
+import express from "express";
+import cors from "cors";
+import connectDB from "./config/db.js";
+import dotenv from "dotenv";
+import path from "path";
+import authRoutes from "./routes/authRoutes.js";
+import restaurantRoutes from "./routes/restaurantRoute.js";
+
 const app = express();
-const cors = require("cors");
-const connectDB = require("./config/db");
-require("dotenv").config();
+
+const __dirname = path.resolve();
+
+dotenv.config();
 
 connectDB();
 
-app.use(cors());
+if (process.env.NODE_ENV !== "production")  {
+  app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+  }));
+}
 app.use(express.json());
 
-// Import routes
-const authRoutes = require("./routes/authRoutes");
-const restaurantRoutes = require("./routes/restaurantRoute");
+
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/restaurant", restaurantRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+  
+  // running the frontend from the server
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+  })
+}
 
 
 const PORT = process.env.PORT || 5000;

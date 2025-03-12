@@ -1,22 +1,23 @@
 {
-  "name": "fooddonatewebapplication",
+  "name": "backend",
   "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node ./backend/index.js",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend"
+    "start": "node backend/index.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/B-s-v-pallavi/FOOD-DONATION-.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/B-s-v-pallavi/FOOD-DONATION-/issues"
-  },
-  "homepage": "https://github.com/B-s-v-pallavi/FOOD-DONATION-#readme",
-  "description": ""
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "fooddonatewebapplication": "file:..",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.12.1",
+    "nodemon": "^3.1.9"
+  }
 }

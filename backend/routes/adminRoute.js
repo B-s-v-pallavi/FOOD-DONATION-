@@ -1,7 +1,8 @@
 // backend/routes/adminRoute.js
-const express = require("express");
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
+
+import express from "express";
+import User from"../models/User.js"
+import bcrypt from "bcryptjs"
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -33,4 +34,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
